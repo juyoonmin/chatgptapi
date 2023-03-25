@@ -39,7 +39,7 @@ app.post('/fortune', async function (req, res) {
 
 
 
-    res.send(fortune)
+    res.json({"assistant": fortune})
 });
 
 app.listen(3000)
