@@ -3,6 +3,10 @@ let userMessages = [];
 let assistantMessages = [];
 let myDateTime = ''
 
+function load() {
+  document.getElementById('loader').style.display = "block";
+}
+
 function start(){
   const date = document.getElementById('date').value;
   const time = document.getElementById('time').value;
@@ -14,9 +18,9 @@ function start(){
       alert('시간을 입력해주세요');
       return;
   }
-  myDateTime = date + " " + time;
- 
-  document.getElementById('intro').style.display = 'none';
+  myDateTime = date + time;
+
+  document.getElementById('datetime').style.display = 'none';
   document.getElementById('chat').style.display = 'block';
 }
 
@@ -47,12 +51,15 @@ const sendMessage = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            myDateTime: myDateTime,
             userMessages: userMessages,
             assistantMessages: assistantMessages,
         })
     });
 
     const data = await response.json();
+    //data가 온 이후에 로딩이 사라짐
+    document.getElementById('loader').style.display = "none";
     //assistantMessage 메시지 추가
     assistantMessages.push(data.assistant)
 
