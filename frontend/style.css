@@ -53,6 +53,9 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+.start_button{
+    margin-right: 10px;
+}
 
 .chat-input button:hover {
     background-color: #3e8e41;
@@ -60,4 +63,11 @@ body {
 
 .assistant {
     color: blue;
+}
+
+.intro-contaier{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

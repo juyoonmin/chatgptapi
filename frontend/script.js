@@ -1,6 +1,32 @@
 const chatBox = document.querySelector('.chat-box');
 let userMessages = [];
 let assistantMessages = [];
+let myDateTime = ''
+
+function start(){
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
+  if(date ===''){
+      alert('날짜를 입력해주세요');
+      return;
+  }
+  if(time ===''){
+      alert('시간을 입력해주세요');
+      return;
+  }
+  myDateTime = date + " " + time;
+ 
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('chat').style.display = 'block';
+}
+
+function restart() {
+    userMessages = [];
+    assistantMessages = [];
+    chatBox.innerHTML = '';
+}
+
+
 
 const sendMessage = async () => {
     const chatInput = document.querySelector('.chat-input input');
