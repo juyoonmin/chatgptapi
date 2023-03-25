@@ -23,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 
 // POST method route
 app.post('/fortune', async function (req, res) {
+    let{userMessages, assistantMessages}= req.body
+    console.log(userMessages);
+    console.log(assistantMessages)
     const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
@@ -35,9 +38,6 @@ app.post('/fortune', async function (req, res) {
 
     let fortune = completion.data.choices[0].message['content']
     console.log(fortune);
-
-
-
 
     res.json({"assistant": fortune})
 });
