@@ -45,7 +45,7 @@ const sendMessage = async () => {
     userMessages.push(chatInput.value)
     chatInput.value = '';
 
-    const response = await fetch('http://localhost:3000/fortune', {
+    const response = await fetch('https://so0z3zwn9a.execute-api.ap-southeast-2.amazonaws.com/prod/fortune', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

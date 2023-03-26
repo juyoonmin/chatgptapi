@@ -1,4 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
+const serverless = require('serverless-http');
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -10,12 +11,12 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 //Cors 이슈 해결
-// let corsOptions = {
-//     origin: 'https://www.domain.com',
-//     credentials: true
-// }
+let corsOptions = {
+    origin: 'https://chatapi-jym.pages.dev',
+    credentials: true
+}
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 //POST 요청 받을 수 있게 만듬
 app.use(bodyParser.json()) // for parsing application/json
@@ -63,7 +64,8 @@ app.post('/fortune', async function (req, res) {
     res.json({ "assistant": fortune })
 });
 
-app.listen(3000)
+// app.listen(3000)
+module.exports.handler = serverless(app);
 
 
 
